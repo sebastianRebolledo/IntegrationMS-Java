@@ -103,6 +103,10 @@ public class TeamsApplication {
 				// Create a new event
 				createEvent(user.mailboxSettings.timeZone, input);
 				break;
+			case 4:
+				// Get Attendance
+				Graph2.getAtendanceReport();
+				break;
 			default:
 				System.out.println("Invalid choice");
 			}

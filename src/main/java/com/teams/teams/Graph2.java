@@ -1,5 +1,8 @@
 package com.teams.teams;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
@@ -7,6 +10,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import org.json.JSONObject;
 
 import okhttp3.Request;
 
@@ -205,8 +211,14 @@ public class Graph2 {
     	}
     
     public static void getAtendanceReport() {
-//    	//MeetingAttendanceReport meetingAttendanceReport = graphClient.me().onlineMeetings("MSpkYzE3Njc0Yy04MWQ5LTRhZGItYmZiMi04ZdFpHRTNaR1F6WGhyZWFkLnYy").meetingAttendanceReport()
-//    			.buildRequest()
-//    			.get();
+    	InputStream stream = graphClient.customRequest("/users/6287dd88-875a-4d33-adb6-9715b263421b/onlineMeetings/MSo2Mjg3ZGQ4OC04NzVhLTRkMzMtYWRiNi05NzE1YjI2MzQyMWIqMCoqMTk6bWVldGluZ19ObUV3TURBeE5UZ3ROR05rWVMwMFlqZGhMVGxqTmpndE9HSTJNVE16TjJZNE5UbGpAdGhyZWFkLnYy/meetingAttendanceReport", InputStream.class)
+    			.buildRequest()
+    			.get();
+//    	graphClient.users(getUserAccessToken())
+    	String result = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
+		
+		JSONObject json = new JSONObject(result);
+		System.out.println(json);
+		System.out.println(json.get("attendanceRecords"));
     }
-    }
+}

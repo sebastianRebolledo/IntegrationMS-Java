@@ -55,6 +55,7 @@ public class TeamsApplication {
 		// Initialize Graph with auth settings
 		
 		Graph2.initializeGraphAuth(appId, appScopes);
+//		Graph2.initializeGraphAuth2(appId, appScopes);
 	    final String accessToken = Graph2.getUserAccessToken();
 
 		// Display access token

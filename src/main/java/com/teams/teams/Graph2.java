@@ -4,6 +4,10 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,12 +17,19 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.json.JSONObject;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.RestTemplate;
 
 import okhttp3.Request;
 
 import com.azure.identity.DeviceCodeCredential;
 import com.azure.identity.DeviceCodeCredentialBuilder;
-
+import com.azure.identity.UsernamePasswordCredential;
+import com.azure.identity.UsernamePasswordCredentialBuilder;
 import com.microsoft.graph.authentication.TokenCredentialAuthProvider;
 import com.microsoft.graph.logger.DefaultLogger;
 import com.microsoft.graph.logger.LoggerLevel;
@@ -39,11 +50,28 @@ import com.microsoft.graph.requests.OnlineMeetingCollectionPage;
 import com.microsoft.graph.requests.EventCollectionPage;
 import com.microsoft.graph.requests.EventCollectionRequestBuilder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.*;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
+import javax.net.ssl.SSLContext;
+import java.io.IOException;
+import java.security.KeyManagementException;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.X509Certificate;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 public class Graph2 {
 
     private static GraphServiceClient<Request> graphClient = null;
+//    private static TokenCredentialAuthProvider authProvider = null;
     private static TokenCredentialAuthProvider authProvider = null;
-
+    
     public static void initializeGraphAuth(String applicationId, List<String> scopes) {
         // Create the auth provider
         final DeviceCodeCredential credential = new DeviceCodeCredentialBuilder()
@@ -62,6 +90,33 @@ public class Graph2 {
             .authenticationProvider(authProvider)
             .logger(logger)
             .buildClient();
+    }
+    public static void initializeGraphAuth2(String applicationId, List<String> scopes) {
+        // Create the auth provider
+    	final UsernamePasswordCredential usernamePasswordCredential = new UsernamePasswordCredentialBuilder()
+    	        .clientId(applicationId)
+    	        .username("juan.castillorincon@endava.com")
+    	        .password("Pipe961204!")
+    	        .build();
+
+    	authProvider = new TokenCredentialAuthProvider(scopes, usernamePasswordCredential);
+    	 try {
+             URL meUrl = new URL("https://graph.microsoft.com/v1.0/me");
+             System.out.println("token "+authProvider.getAuthorizationTokenAsync(meUrl).get());
+              
+         } catch(Exception ex) {
+        	 System.out.println("error getting token "+ex);
+         }
+    	 
+    	 
+    	 
+//    	graphClient =
+//    	  GraphServiceClient
+//    	    .builder()
+//    	    .authenticationProvider(authProvider)
+//    	    .buildClient();
+
+//    	final User me = graphClient.me().buildRequest().get();
     }
 
     public static String getUserAccessToken()
@@ -139,7 +194,7 @@ public class Graph2 {
             .buildRequest()
             .select("displayName,mailboxSettings")
             .get();
-
+//        User user = graphClient.users()
         return me;
     }
     
@@ -210,15 +265,59 @@ public class Graph2 {
     	
     	}
     
+//    private RestTemplate getRestTemplate()
+//            throws KeyStoreException, NoSuchAlgorithmException, KeyManagementException {
+//        TrustStrategy acceptingTrustStrategy = (X509Certificate[] chain, String authType) -> true;
+//        SSLContext sslContext = org.apache.http.ssl.SSLContexts.custom()
+//                .loadTrustMaterial(null, acceptingTrustStrategy)
+//                .build();
+//        SSLConnectionSocketFactory csf = new SSLConnectionSocketFactory(sslContext);
+//        CloseableHttpClient httpClient = HttpClients.custom()
+//                .setSSLSocketFactory(csf)
+//                .build();
+//        HttpComponentsClientHttpRequestFactory requestFactory =
+//                new HttpComponentsClientHttpRequestFactory();
+//        requestFactory.setHttpClient(httpClient);
+//        RestTemplate restTemplate = new RestTemplate(requestFactory);
+//        return restTemplate;
+//    }
     public static void getAtendanceReport() {
-    	InputStream stream = graphClient.customRequest("/users/6287dd88-875a-4d33-adb6-9715b263421b/onlineMeetings/MSo2Mjg3ZGQ4OC04NzVhLTRkMzMtYWRiNi05NzE1YjI2MzQyMWIqMCoqMTk6bWVldGluZ19ObUV3TURBeE5UZ3ROR05rWVMwMFlqZGhMVGxqTmpndE9HSTJNVE16TjJZNE5UbGpAdGhyZWFkLnYy/meetingAttendanceReport", InputStream.class)
-    			.buildRequest()
-    			.get();
+    	try {
+    		HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            String token = "eyJ0eXAiOiJKV1QiLCJub25jZSI6Il9lZ052LXhNQ3FpQ2gwSlk0d29hdEJjTnZTQktwaGVJNl92allQeHRLWnMiLCJhbGciOiJSUzI1NiIsIng1dCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCIsImtpZCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8wYjNmYzE3OC1iNzMwLTRlOGItOTg0My1lODEyNTkyMzdiNzcvIiwiaWF0IjoxNjM1OTc3MjM2LCJuYmYiOjE2MzU5NzcyMzYsImV4cCI6MTYzNTk4MTEzNiwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhUQUFBQWF4QkRVQzhmeklDdHJBanQyUHFFcm14emk4WVZDTTVHUkQ1OTJySkxSLzNxbFJsTm9NSVh0d1Q5UnF3ZGpyOCt6Z3hrb3Y0TlovSnphZjh2SFhoem5zL0I3QmIvbXRRalVFLzJ4c0NZb0FJZ2JIN0xUS2ZoSGludVNWbFNNelllbjRtK3F5V2REa2Y2Q1hkczdwaEw0Zz09IiwiYW1yIjpbInB3ZCIsInJzYSIsIndpYSIsIm1mYSJdLCJhcHBfZGlzcGxheW5hbWUiOiJyZWNvZ25pdGlvbl9wcm9ncmFtIiwiYXBwaWQiOiI2NmNjM2NjYS0wMDYwLTQ3YWMtYjQ3Ni00Yzg1NTQ0MTZkZjUiLCJhcHBpZGFjciI6IjAiLCJkZXZpY2VpZCI6IjhjOTlhMTE2LWQ2YzUtNGU0Ni1iODZjLWRjNmY5NWE4YWYwMCIsImZhbWlseV9uYW1lIjoiQ2FzdGlsbG8gUmluY29uIiwiZ2l2ZW5fbmFtZSI6Ikp1YW4gRmVsaXBlIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMTkwLjE1OS4xMi4yMDMiLCJuYW1lIjoiSnVhbiBGZWxpcGUgQ2FzdGlsbG8gUmluY29uIiwib2lkIjoiNjI4N2RkODgtODc1YS00ZDMzLWFkYjYtOTcxNWIyNjM0MjFiIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTM5OTg3MTI5Mi0xMDY3NTQxNTk4LTcwMjg0MzgzNC0xNDE4NjUiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDE1REZCQ0U3OSIsInJoIjoiMC5BVjBBZU1FX0N6QzNpMDZZUS1nU1dTTjdkOG84ekdaZ0FLeEh0SFpNaFZSQmJmVmRBTXcuIiwic2NwIjoiRmlsZXMuUmVhZC5BbGwgb3BlbmlkIHByb2ZpbGUgVXNlci5SZWFkIGVtYWlsIE1haWxib3hTZXR0aW5ncy5SZWFkIENhbGVuZGFycy5SZWFkV3JpdGUgT25saW5lTWVldGluZ3MuUmVhZCIsInNpZ25pbl9zdGF0ZSI6WyJkdmNfbW5nZCIsImR2Y19kbWpkIiwia21zaSJdLCJzdWIiOiI0alVId2ZyR0V4bmVON1dJX3ItaWpfR3piZFpsa25iUVVRX3NjcGRKVkV3IiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiMGIzZmMxNzgtYjczMC00ZThiLTk4NDMtZTgxMjU5MjM3Yjc3IiwidW5pcXVlX25hbWUiOiJqdWFuLmNhc3RpbGxvcmluY29uQGVuZGF2YS5jb20iLCJ1cG4iOiJKdWFuLkNhc3RpbGxvUmluY29uQGVuZGF2YS5jb20iLCJ1dGkiOiI0X1Uyd05XbjJrQy1RdUxqeEpxS0FBIiwidmVyIjoiMS4wIiwid2lkcyI6WyJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX3N0Ijp7InN1YiI6ImFhT1dYcWFYZG95R0tFRUZxMUw1ck1NRmNxR3hsbzN5RHRfUjNZWm04N1EifSwieG1zX3RjZHQiOjEzNzIyMjg5MzV9.FGBt9NbXn5FJOfsPEH9SZs8DL4w2vAE7knLA2Ym7YRYy10ip9wq4W3Y8FpYl5BYbRs06MfTz3PTZ3eyJHrWLIFNks10kFs8vR4dagND2aLWsdQWMt9HGjHF6XeS0wdkmlp_9IgcpaOB3gH4ZFb4xNnXDG9TeztJXwJ1yqdD-cxx9UTsDTDJe1rdE1rTg4e7tbv6_O78RRS4bN1HkImpu8I-C4-LSmM1x_UB9fmzx5kUl0sqyosITNHSY-5GYFi6ilVTpQgkUH5HDa9fRfQnVnLnU6vKvFxzQzqsbn0pcKSjeeckqPFbB96TJ-eO-6ZEs4qMrjrSlUMc4clrMEyeOPg";
+            headers.set("Authorization", token);
+            HttpEntity<String> requestEntity = new HttpEntity<>("body", headers);
+            ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {};
+            String url = "https://graph.microsoft.com/beta/users/6287dd88-875a-4d33-adb6-9715b263421b/onlineMeetings/MSo2Mjg3ZGQ4OC04NzVhLTRkMzMtYWRiNi05NzE1YjI2MzQyMWIqMCoqMTk6bWVldGluZ19ObUV3TURBeE5UZ3ROR05rWVMwMFlqZGhMVGxqTmpndE9HSTJNVE16TjJZNE5UbGpAdGhyZWFkLnYy/meetingAttendanceReport";
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> response = restTemplate.exchange( url, HttpMethod.GET, requestEntity, responseType);
+            System.out.println(response.getBody());
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+    	
+    	
+    	
+    	
+//    	String token = "eyJ0eXAiOiJKV1QiLCJub25jZSI6Il9lZ052LXhNQ3FpQ2gwSlk0d29hdEJjTnZTQktwaGVJNl92allQeHRLWnMiLCJhbGciOiJSUzI1NiIsIng1dCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCIsImtpZCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8wYjNmYzE3OC1iNzMwLTRlOGItOTg0My1lODEyNTkyMzdiNzcvIiwiaWF0IjoxNjM1OTc3MjM2LCJuYmYiOjE2MzU5NzcyMzYsImV4cCI6MTYzNTk4MTEzNiwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhUQUFBQWF4QkRVQzhmeklDdHJBanQyUHFFcm14emk4WVZDTTVHUkQ1OTJySkxSLzNxbFJsTm9NSVh0d1Q5UnF3ZGpyOCt6Z3hrb3Y0TlovSnphZjh2SFhoem5zL0I3QmIvbXRRalVFLzJ4c0NZb0FJZ2JIN0xUS2ZoSGludVNWbFNNelllbjRtK3F5V2REa2Y2Q1hkczdwaEw0Zz09IiwiYW1yIjpbInB3ZCIsInJzYSIsIndpYSIsIm1mYSJdLCJhcHBfZGlzcGxheW5hbWUiOiJyZWNvZ25pdGlvbl9wcm9ncmFtIiwiYXBwaWQiOiI2NmNjM2NjYS0wMDYwLTQ3YWMtYjQ3Ni00Yzg1NTQ0MTZkZjUiLCJhcHBpZGFjciI6IjAiLCJkZXZpY2VpZCI6IjhjOTlhMTE2LWQ2YzUtNGU0Ni1iODZjLWRjNmY5NWE4YWYwMCIsImZhbWlseV9uYW1lIjoiQ2FzdGlsbG8gUmluY29uIiwiZ2l2ZW5fbmFtZSI6Ikp1YW4gRmVsaXBlIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMTkwLjE1OS4xMi4yMDMiLCJuYW1lIjoiSnVhbiBGZWxpcGUgQ2FzdGlsbG8gUmluY29uIiwib2lkIjoiNjI4N2RkODgtODc1YS00ZDMzLWFkYjYtOTcxNWIyNjM0MjFiIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTM5OTg3MTI5Mi0xMDY3NTQxNTk4LTcwMjg0MzgzNC0xNDE4NjUiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDE1REZCQ0U3OSIsInJoIjoiMC5BVjBBZU1FX0N6QzNpMDZZUS1nU1dTTjdkOG84ekdaZ0FLeEh0SFpNaFZSQmJmVmRBTXcuIiwic2NwIjoiRmlsZXMuUmVhZC5BbGwgb3BlbmlkIHByb2ZpbGUgVXNlci5SZWFkIGVtYWlsIE1haWxib3hTZXR0aW5ncy5SZWFkIENhbGVuZGFycy5SZWFkV3JpdGUgT25saW5lTWVldGluZ3MuUmVhZCIsInNpZ25pbl9zdGF0ZSI6WyJkdmNfbW5nZCIsImR2Y19kbWpkIiwia21zaSJdLCJzdWIiOiI0alVId2ZyR0V4bmVON1dJX3ItaWpfR3piZFpsa25iUVVRX3NjcGRKVkV3IiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiMGIzZmMxNzgtYjczMC00ZThiLTk4NDMtZTgxMjU5MjM3Yjc3IiwidW5pcXVlX25hbWUiOiJqdWFuLmNhc3RpbGxvcmluY29uQGVuZGF2YS5jb20iLCJ1cG4iOiJKdWFuLkNhc3RpbGxvUmluY29uQGVuZGF2YS5jb20iLCJ1dGkiOiI0X1Uyd05XbjJrQy1RdUxqeEpxS0FBIiwidmVyIjoiMS4wIiwid2lkcyI6WyJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX3N0Ijp7InN1YiI6ImFhT1dYcWFYZG95R0tFRUZxMUw1ck1NRmNxR3hsbzN5RHRfUjNZWm04N1EifSwieG1zX3RjZHQiOjEzNzIyMjg5MzV9.FGBt9NbXn5FJOfsPEH9SZs8DL4w2vAE7knLA2Ym7YRYy10ip9wq4W3Y8FpYl5BYbRs06MfTz3PTZ3eyJHrWLIFNks10kFs8vR4dagND2aLWsdQWMt9HGjHF6XeS0wdkmlp_9IgcpaOB3gH4ZFb4xNnXDG9TeztJXwJ1yqdD-cxx9UTsDTDJe1rdE1rTg4e7tbv6_O78RRS4bN1HkImpu8I-C4-LSmM1x_UB9fmzx5kUl0sqyosITNHSY-5GYFi6ilVTpQgkUH5HDa9fRfQnVnLnU6vKvFxzQzqsbn0pcKSjeeckqPFbB96TJ-eO-6ZEs4qMrjrSlUMc4clrMEyeOPg";
+//    	RestTemplate restTemplate = new RestTemplate();
+//    	String fooResourceUrl
+//    	  = "https://graph.microsoft.com/beta/users/6287dd88-875a-4d33-adb6-9715b263421b/onlineMeetings/MSo2Mjg3ZGQ4OC04NzVhLTRkMzMtYWRiNi05NzE1YjI2MzQyMWIqMCoqMTk6bWVldGluZ19ObUV3TURBeE5UZ3ROR05rWVMwMFlqZGhMVGxqTmpndE9HSTJNVE16TjJZNE5UbGpAdGhyZWFkLnYy/meetingAttendanceReport";
+//    	HttpHeaders headers = new HttpHeaders();
+//    	headers.setBearerAuth(token);
+//    	HttpEntity<String> entity = new HttpEntity<>("body", headers);
+//    	ResponseEntity<String> response
+//    	  = restTemplate.getForEntity(fooResourceUrl , String.class);
+//    	InputStream stream = graphClient.customRequest("/users/6287dd88-875a-4d33-adb6-9715b263421b/onlineMeetings/MSo2Mjg3ZGQ4OC04NzVhLTRkMzMtYWRiNi05NzE1YjI2MzQyMWIqMCoqMTk6bWVldGluZ19ObUV3TURBeE5UZ3ROR05rWVMwMFlqZGhMVGxqTmpndE9HSTJNVE16TjJZNE5UbGpAdGhyZWFkLnYy/meetingAttendanceReport", InputStream.class)
+//    			
+//    			.buildRequest()
+//    			.get();
 //    	graphClient.users(getUserAccessToken())
-    	String result = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
-		
-		JSONObject json = new JSONObject(result);
-		System.out.println(json);
-		System.out.println(json.get("attendanceRecords"));
+//    	String result = new BufferedReader(new InputStreamReader(stream)).lines().collect(Collectors.joining("\n"));
+//    	
+//		JSONObject json = new JSONObject(result);
+//		System.out.println(json);
+//		System.out.println(json.get("attendanceRecords"));
     }
 }

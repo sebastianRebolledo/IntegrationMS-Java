@@ -296,8 +296,8 @@ public class Graph2 {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
-    	
-    	
+    
+    
     	
     	
 //    	String token = "eyJ0eXAiOiJKV1QiLCJub25jZSI6Il9lZ052LXhNQ3FpQ2gwSlk0d29hdEJjTnZTQktwaGVJNl92allQeHRLWnMiLCJhbGciOiJSUzI1NiIsIng1dCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCIsImtpZCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8wYjNmYzE3OC1iNzMwLTRlOGItOTg0My1lODEyNTkyMzdiNzcvIiwiaWF0IjoxNjM1OTc3MjM2LCJuYmYiOjE2MzU5NzcyMzYsImV4cCI6MTYzNTk4MTEzNiwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhUQUFBQWF4QkRVQzhmeklDdHJBanQyUHFFcm14emk4WVZDTTVHUkQ1OTJySkxSLzNxbFJsTm9NSVh0d1Q5UnF3ZGpyOCt6Z3hrb3Y0TlovSnphZjh2SFhoem5zL0I3QmIvbXRRalVFLzJ4c0NZb0FJZ2JIN0xUS2ZoSGludVNWbFNNelllbjRtK3F5V2REa2Y2Q1hkczdwaEw0Zz09IiwiYW1yIjpbInB3ZCIsInJzYSIsIndpYSIsIm1mYSJdLCJhcHBfZGlzcGxheW5hbWUiOiJyZWNvZ25pdGlvbl9wcm9ncmFtIiwiYXBwaWQiOiI2NmNjM2NjYS0wMDYwLTQ3YWMtYjQ3Ni00Yzg1NTQ0MTZkZjUiLCJhcHBpZGFjciI6IjAiLCJkZXZpY2VpZCI6IjhjOTlhMTE2LWQ2YzUtNGU0Ni1iODZjLWRjNmY5NWE4YWYwMCIsImZhbWlseV9uYW1lIjoiQ2FzdGlsbG8gUmluY29uIiwiZ2l2ZW5fbmFtZSI6Ikp1YW4gRmVsaXBlIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMTkwLjE1OS4xMi4yMDMiLCJuYW1lIjoiSnVhbiBGZWxpcGUgQ2FzdGlsbG8gUmluY29uIiwib2lkIjoiNjI4N2RkODgtODc1YS00ZDMzLWFkYjYtOTcxNWIyNjM0MjFiIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTM5OTg3MTI5Mi0xMDY3NTQxNTk4LTcwMjg0MzgzNC0xNDE4NjUiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDE1REZCQ0U3OSIsInJoIjoiMC5BVjBBZU1FX0N6QzNpMDZZUS1nU1dTTjdkOG84ekdaZ0FLeEh0SFpNaFZSQmJmVmRBTXcuIiwic2NwIjoiRmlsZXMuUmVhZC5BbGwgb3BlbmlkIHByb2ZpbGUgVXNlci5SZWFkIGVtYWlsIE1haWxib3hTZXR0aW5ncy5SZWFkIENhbGVuZGFycy5SZWFkV3JpdGUgT25saW5lTWVldGluZ3MuUmVhZCIsInNpZ25pbl9zdGF0ZSI6WyJkdmNfbW5nZCIsImR2Y19kbWpkIiwia21zaSJdLCJzdWIiOiI0alVId2ZyR0V4bmVON1dJX3ItaWpfR3piZFpsa25iUVVRX3NjcGRKVkV3IiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiMGIzZmMxNzgtYjczMC00ZThiLTk4NDMtZTgxMjU5MjM3Yjc3IiwidW5pcXVlX25hbWUiOiJqdWFuLmNhc3RpbGxvcmluY29uQGVuZGF2YS5jb20iLCJ1cG4iOiJKdWFuLkNhc3RpbGxvUmluY29uQGVuZGF2YS5jb20iLCJ1dGkiOiI0X1Uyd05XbjJrQy1RdUxqeEpxS0FBIiwidmVyIjoiMS4wIiwid2lkcyI6WyJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX3N0Ijp7InN1YiI6ImFhT1dYcWFYZG95R0tFRUZxMUw1ck1NRmNxR3hsbzN5RHRfUjNZWm04N1EifSwieG1zX3RjZHQiOjEzNzIyMjg5MzV9.FGBt9NbXn5FJOfsPEH9SZs8DL4w2vAE7knLA2Ym7YRYy10ip9wq4W3Y8FpYl5BYbRs06MfTz3PTZ3eyJHrWLIFNks10kFs8vR4dagND2aLWsdQWMt9HGjHF6XeS0wdkmlp_9IgcpaOB3gH4ZFb4xNnXDG9TeztJXwJ1yqdD-cxx9UTsDTDJe1rdE1rTg4e7tbv6_O78RRS4bN1HkImpu8I-C4-LSmM1x_UB9fmzx5kUl0sqyosITNHSY-5GYFi6ilVTpQgkUH5HDa9fRfQnVnLnU6vKvFxzQzqsbn0pcKSjeeckqPFbB96TJ-eO-6ZEs4qMrjrSlUMc4clrMEyeOPg";
@@ -320,4 +320,89 @@ public class Graph2 {
 //		System.out.println(json);
 //		System.out.println(json.get("attendanceRecords"));
     }
+    
+    public static void createEevent() {
+    	try {
+    		String body ="{\r\n"
+    				+ "    \"subject\": \"Este fue jeje\",\r\n"
+    				+ "    \"body\": {\r\n"
+    				+ "        \"contentType\": \"HTML\",\r\n"
+    				+ "        \"content\": \"Does noon work for you?\"\r\n"
+    				+ "    },\r\n"
+    				+ "    \"start\": {\r\n"
+    				+ "        \"dateTime\": \"2021-11-04T12:00:00\",\r\n"
+    				+ "        \"timeZone\": \"Pacific Standard Time\"\r\n"
+    				+ "    },\r\n"
+    				+ "    \"end\": {\r\n"
+    				+ "        \"dateTime\": \"2021-11-04T14:00:00\",\r\n"
+    				+ "        \"timeZone\": \"Pacific Standard Time\"\r\n"
+    				+ "    },\r\n"
+    				+ "    \"location\": {\r\n"
+    				+ "        \"displayName\": \"Harry's Bar\"\r\n"
+    				+ "    },\r\n"
+    				+ "    \"attendees\": [\r\n"
+    				+ "        {\r\n"
+    				+ "            \"emailAddress\": {\r\n"
+    				+ "                \"address\": \"sebastian.rebolledo@endava.com\"\r\n"
+    				+ "            },\r\n"
+    				+ "            \"type\": \"required\"\r\n"
+    				+ "        },\r\n"
+    				+ "        {\r\n"
+    				+ "            \"emailAddress\": {\r\n"
+    				+ "                \"address\": \"andres.villa@endava.com\"\r\n"
+    				+ "            }\r\n"
+    				+ "        },\r\n"
+    				+ "        {\r\n"
+    				+ "            \"emailAddress\": {\r\n"
+    				+ "                \"address\": \"luis.espinosa@endava.com\"\r\n"
+    				+ "            }\r\n"
+    				+ "        }\r\n"
+    				+ "    ],\r\n"
+    				+ "    \"allowNewTimeProposals\": true,\r\n"
+    				+ "    \"isOnlineMeeting\": true,\r\n"
+    				+ "    \"onlineMeetingProvider\": \"teamsForBusiness\"\r\n"
+    				+ "}";
+    		
+    		String body2 ="{\"subject\": \"Let's go for lunch\",\"body\": {\"contentType\": \"HTML\",\"content\": \"Does noon work for you?\"},\"start\": {\"dateTime\": \"2021-11-04T12:00:00\",\"timeZone\": \"Pacific Standard Time\"},\"end\": {\"dateTime\": \"2021-11-04T14:00:00\",\"timeZone\": \"Pacific Standard Time\"},\"location\": {\"displayName\": \"Harry's Bar\"},\"attendees\": [{\"emailAddress\": {\"address\": \"sebastian.rebolledo@endava.com\"},\"type\": \"required\"},{\"emailAddress\": {\"address\": \"andres.villa@endava.com\"}},{\"emailAddress\": {\"address\": \"luis.espinosa@endava.com\"}}],\"allowNewTimeProposals\": true,\"isOnlineMeeting\": true,\"onlineMeetingProvider\": \"teamsForBusiness\"}";
+    		HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            //String token = "eyJ0eXAiOiJKV1QiLCJub25jZSI6IkJaY1hGdjc1RHJMQ3dsYzlmTzBxZVJJd2tOUVowNV9Vd3VWWjVVbFI1OG8iLCJhbGciOiJSUzI1NiIsIng1dCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCIsImtpZCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8wYjNmYzE3OC1iNzMwLTRlOGItOTg0My1lODEyNTkyMzdiNzcvIiwiaWF0IjoxNjM2MDU0MjU5LCJuYmYiOjE2MzYwNTQyNTksImV4cCI6MTYzNjA1ODE1OSwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhUQUFBQWVLc0hybEJ0VDMvcUtoRi9PNmI4bFZSeHNMUkU1VU9reE11VHRJYXpWak1FM3h6MVVLS0d3NmR4RE9QalB4MVBPS3pkdkdxazlVV1Vaclhua1lmZ3JBMnV0TjhWaVVzRG5nejhlNnNQZHIrOTRHUGFZTVlIbm5BMXdsMG9ud2ZLc2E2blp2Qk1tc1daZytPM1d3V2tjZz09IiwiYW1yIjpbInB3ZCIsInJzYSIsIndpYSIsIm1mYSJdLCJhcHBfZGlzcGxheW5hbWUiOiJyZWNvZ25pdGlvbl9wcm9ncmFtIiwiYXBwaWQiOiI2NmNjM2NjYS0wMDYwLTQ3YWMtYjQ3Ni00Yzg1NTQ0MTZkZjUiLCJhcHBpZGFjciI6IjAiLCJkZXZpY2VpZCI6IjhjOTlhMTE2LWQ2YzUtNGU0Ni1iODZjLWRjNmY5NWE4YWYwMCIsImZhbWlseV9uYW1lIjoiQ2FzdGlsbG8gUmluY29uIiwiZ2l2ZW5fbmFtZSI6Ikp1YW4gRmVsaXBlIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMTkwLjE1OS4xMi4yMDMiLCJuYW1lIjoiSnVhbiBGZWxpcGUgQ2FzdGlsbG8gUmluY29uIiwib2lkIjoiNjI4N2RkODgtODc1YS00ZDMzLWFkYjYtOTcxNWIyNjM0MjFiIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTM5OTg3MTI5Mi0xMDY3NTQxNTk4LTcwMjg0MzgzNC0xNDE4NjUiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDE1REZCQ0U3OSIsInJoIjoiMC5BVjBBZU1FX0N6QzNpMDZZUS1nU1dTTjdkOG84ekdaZ0FLeEh0SFpNaFZSQmJmVmRBTXcuIiwic2NwIjoiQ2FsZW5kYXJzLlJlYWRXcml0ZSBGaWxlcy5SZWFkLkFsbCBNYWlsYm94U2V0dGluZ3MuUmVhZCBPbmxpbmVNZWV0aW5ncy5SZWFkIG9wZW5pZCBwcm9maWxlIFVzZXIuUmVhZCBlbWFpbCIsInNpZ25pbl9zdGF0ZSI6WyJkdmNfbW5nZCIsImR2Y19kbWpkIiwia21zaSJdLCJzdWIiOiI0alVId2ZyR0V4bmVON1dJX3ItaWpfR3piZFpsa25iUVVRX3NjcGRKVkV3IiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiMGIzZmMxNzgtYjczMC00ZThiLTk4NDMtZTgxMjU5MjM3Yjc3IiwidW5pcXVlX25hbWUiOiJqdWFuLmNhc3RpbGxvcmluY29uQGVuZGF2YS5jb20iLCJ1cG4iOiJKdWFuLkNhc3RpbGxvUmluY29uQGVuZGF2YS5jb20iLCJ1dGkiOiI0UUJVbUV5QVVraTlNYzRFaFprWkFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX3N0Ijp7InN1YiI6ImFhT1dYcWFYZG95R0tFRUZxMUw1ck1NRmNxR3hsbzN5RHRfUjNZWm04N1EifSwieG1zX3RjZHQiOjEzNzIyMjg5MzV9.oYbVty-Tb9YLUBlo1RMgpzKa2Dh1mVu1BLhtv-zKC9cEMBostykG8KqkXy8Pqgv-_vxnPqOh_fTLOjcxz-Qr1bW5WEeh0wSTmuNkfCiG9ZSkPMTeOl_Nw3LgfTcCkm1RbayFYZ9fX-SP23tMp4f5ozK_bDSWlAova7h-KS_BPVhBTz7bRMQqUwtfYzw2jDJuxM76mQBOqx3CbuevKeBQp_aV_5bmYG4T1rEQpS-TBqcqhYK8Uucz6j1UVihJgukeFh5HvrF3Wp8Jjb9M9LK_k1ZDhnIv7c_KBDZuwwH-t5hKcW4dp7CRaPDjxZp_a8mNRZNKtsdAzETwRaeEqbFuyQ";
+           String token = "eyJ0eXAiOiJKV1QiLCJub25jZSI6ImprUjdXMHRCZHFzNzhTZGVvcHJ3dDdLUHJZeWZkampMcFg5VE1nZkotdk0iLCJhbGciOiJSUzI1NiIsIng1dCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCIsImtpZCI6Imwzc1EtNTBjQ0g0eEJWWkxIVEd3blNSNzY4MCJ9.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTAwMDAtYzAwMC0wMDAwMDAwMDAwMDAiLCJpc3MiOiJodHRwczovL3N0cy53aW5kb3dzLm5ldC8wYjNmYzE3OC1iNzMwLTRlOGItOTg0My1lODEyNTkyMzdiNzcvIiwiaWF0IjoxNjM2MDU4OTEwLCJuYmYiOjE2MzYwNTg5MTAsImV4cCI6MTYzNjA2MjgxMCwiYWNjdCI6MCwiYWNyIjoiMSIsImFpbyI6IkFYUUFpLzhUQUFBQXptTXNNVmxXcmplMUVoV1VzODZIdG5pWXlrVDZMM3RXc2N5V01iU1JxYW5pcm1CQ0dQM0VGYjZqaGtHeFpuRU5SUlkzSkhtek9ZeVRqSEgxVzhJNDI3Vm8yWW9VSEtybExpTDJTbFdTMlQ1LzY4TjVFeXBYck5OaWlPUGs1TVNxa2RxN1MrWHVScE41QnpZbWdFYnN3QT09IiwiYW1yIjpbInB3ZCIsInJzYSIsIndpYSIsIm1mYSJdLCJhcHBfZGlzcGxheW5hbWUiOiJyZWNvZ25pdGlvbl9wcm9ncmFtIiwiYXBwaWQiOiI2NmNjM2NjYS0wMDYwLTQ3YWMtYjQ3Ni00Yzg1NTQ0MTZkZjUiLCJhcHBpZGFjciI6IjAiLCJkZXZpY2VpZCI6IjhjOTlhMTE2LWQ2YzUtNGU0Ni1iODZjLWRjNmY5NWE4YWYwMCIsImZhbWlseV9uYW1lIjoiQ2FzdGlsbG8gUmluY29uIiwiZ2l2ZW5fbmFtZSI6Ikp1YW4gRmVsaXBlIiwiaWR0eXAiOiJ1c2VyIiwiaXBhZGRyIjoiMTkwLjE1OS4xMi4yMDMiLCJuYW1lIjoiSnVhbiBGZWxpcGUgQ2FzdGlsbG8gUmluY29uIiwib2lkIjoiNjI4N2RkODgtODc1YS00ZDMzLWFkYjYtOTcxNWIyNjM0MjFiIiwib25wcmVtX3NpZCI6IlMtMS01LTIxLTM5OTg3MTI5Mi0xMDY3NTQxNTk4LTcwMjg0MzgzNC0xNDE4NjUiLCJwbGF0ZiI6IjMiLCJwdWlkIjoiMTAwMzIwMDE1REZCQ0U3OSIsInJoIjoiMC5BVjBBZU1FX0N6QzNpMDZZUS1nU1dTTjdkOG84ekdaZ0FLeEh0SFpNaFZSQmJmVmRBTXcuIiwic2NwIjoiQ2FsZW5kYXJzLlJlYWRXcml0ZSBGaWxlcy5SZWFkLkFsbCBNYWlsYm94U2V0dGluZ3MuUmVhZCBPbmxpbmVNZWV0aW5ncy5SZWFkIG9wZW5pZCBwcm9maWxlIFVzZXIuUmVhZCBlbWFpbCIsInNpZ25pbl9zdGF0ZSI6WyJkdmNfbW5nZCIsImR2Y19kbWpkIiwia21zaSJdLCJzdWIiOiI0alVId2ZyR0V4bmVON1dJX3ItaWpfR3piZFpsa25iUVVRX3NjcGRKVkV3IiwidGVuYW50X3JlZ2lvbl9zY29wZSI6IkVVIiwidGlkIjoiMGIzZmMxNzgtYjczMC00ZThiLTk4NDMtZTgxMjU5MjM3Yjc3IiwidW5pcXVlX25hbWUiOiJqdWFuLmNhc3RpbGxvcmluY29uQGVuZGF2YS5jb20iLCJ1cG4iOiJKdWFuLkNhc3RpbGxvUmluY29uQGVuZGF2YS5jb20iLCJ1dGkiOiJOam9haTVocEZreVVpb3NWc3ZnWEFBIiwidmVyIjoiMS4wIiwid2lkcyI6WyJiNzlmYmY0ZC0zZWY5LTQ2ODktODE0My03NmIxOTRlODU1MDkiXSwieG1zX3N0Ijp7InN1YiI6ImFhT1dYcWFYZG95R0tFRUZxMUw1ck1NRmNxR3hsbzN5RHRfUjNZWm04N1EifSwieG1zX3RjZHQiOjEzNzIyMjg5MzV9.eh9hbliRDBI54YfOvbJfytJ_qKkfi6FrOvPRsz_lF-A--OYq7LqWpcbINeHSuj0Bw0RnyM8kCAwBanqorPmupN9E7YeX7MpP_HFOZ4XoF5TDb_lvdqDMFouIguTDFnlxvhZ8wAJm2KvPKMT7kcgQu-dYwY67Tdc1V73Gow4-a3ZN05cxqnVvzPmHISc36AoIEvBzBEqbow_HuuhP4A8mcpENErfdtoZdgOkqnNDt18tHDJJ4KKTe1i6jUGYJYblbgDOIEbgqPpMsTIwEBQzJxeJxRKBfZ2LAJrgehxqr50PUnKIBET-hDh1xiG6xjnavvmOOtd3d0gJdZLG-SJHzFA";
+            headers.set("Authorization", token);
+            HttpEntity<String> requestEntity = new HttpEntity<>(body, headers);
+            ParameterizedTypeReference<String> responseType = new ParameterizedTypeReference<String>() {};
+            //String url = "https://graph.microsoft.com/beta/users/6287dd88-875a-4d33-adb6-9715b263421b/onlineMeetings/MSo2Mjg3ZGQ4OC04NzVhLTRkMzMtYWRiNi05NzE1YjI2MzQyMWIqMCoqMTk6bWVldGluZ19ObUV3TURBeE5UZ3ROR05rWVMwMFlqZGhMVGxqTmpndE9HSTJNVE16TjJZNE5UbGpAdGhyZWFkLnYy/meetingAttendanceReport";
+           String url = "https://graph.microsoft.com/v1.0/me/events";
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> response = restTemplate.exchange( url, HttpMethod.POST, requestEntity, responseType);
+            System.out.println(response.getBody());
+            System.out.println(">>>: " +response.getStatusCodeValue());
+		} catch (Exception e) {
+		 e.printStackTrace();
+			// TODO: handle exception
+		}
+    }
+    
+    
+//    public Dto update(long p0,
+//            java.util.List<PDto> p1) 
+//             {
+//        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(this.url);
+//        uriBuilder.pathSegment(serviceUrlPart, "/{organizationId}");
+//        Map<String, String> criteria = new HashMap<String, String>();
+//        criteria.put("organizationId", Long.toString(p0));
+//        HttpEntity<java.util.List<com.curaspan.pdb.model.v2.PDto>> httpEntity = new HttpEntity<java.util.List<com.curaspan.pdb.model.v2.PDto>>(p1, null);
+//        ParameterizedTypeReference<com.curaspan.pdb.model.Dto> responseType = new ParameterizedTypeReference<com.curaspan.pdb.model.Dto>() {};
+//        ResponseEntity<com.curaspan.pdb.model.Dto> response = 
+//        restTemplate.exchange(
+//            uriBuilder.build().toUriString(),
+//            HttpMethod.PUT, 
+//            httpEntity,
+//            responseType,
+//            criteria);
+//        return response.getBody();
+//    }
+//    
+    
+    
 }

@@ -106,7 +106,8 @@ public class TeamsApplication {
 				break;
 			case 4:
 				// Get Attendance
-				Graph2.getAtendanceReport();
+				//Graph2.getAtendanceReport();
+				Graph2.createEevent();
 				break;
 			default:
 				System.out.println("Invalid choice");

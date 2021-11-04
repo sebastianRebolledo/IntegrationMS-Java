@@ -54,17 +54,17 @@ public class TeamsApplication {
 
 		// Initialize Graph with auth settings
 		
-		Graph2.initializeGraphAuth(appId, appScopes);
+//		Graph2.initializeGraphAuth(appId, appScopes);
 //		Graph2.initializeGraphAuth2(appId, appScopes);
 	    final String accessToken = Graph2.getUserAccessToken();
 
 		// Display access token
 
 		// Greet the user
-		User user = Graph2.getUser();
-		System.out.println("Welcome " + user.displayName);
-		System.out.println("Time zone: " + user.mailboxSettings.timeZone);
-		System.out.println();
+//		User user = Graph2.getUser();
+//		System.out.println("Welcome " + user.displayName);
+//		System.out.println("Time zone: " + user.mailboxSettings.timeZone);
+//		System.out.println();
 		
 		Scanner input = new Scanner(System.in);
 
@@ -98,11 +98,11 @@ public class TeamsApplication {
 				break;
 			case 2:
 				// List the calendar
-				listCalendarEvents(user.mailboxSettings.timeZone);
+//				listCalendarEvents(user.mailboxSettings.timeZone);
 				break;
 			case 3:
 				// Create a new event
-				createEvent(user.mailboxSettings.timeZone, input);
+//				createEvent(user.mailboxSettings.timeZone, input);
 				break;
 			case 4:
 				// Get Attendance
